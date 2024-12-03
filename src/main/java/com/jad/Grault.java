@@ -9,7 +9,7 @@ public class Grault {
     }
 
     public Foo getFoo() {
-        this foo= foo;
+        return foo= foo;
     }
 
 }

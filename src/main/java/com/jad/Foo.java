@@ -1,56 +1,65 @@
 package com.jad;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Foo {
 
     private Bar bar;
-    private Baz[] bazs;
     private Qux qux;
-    private Qux qux;
-    private Grault[] graults;
-
+    private List<Grault> graults= new ArrayList<>();
+    private Corge corge = null;
+    private List<Baz> bazs = new ArrayList<>();
 
     public Foo(final Bar bar) {
         this.bar = bar;
-        this.bazs = new Baz[];
-        this.graults = new Grault[];
-        this.qux = new Qux();
+        this.qux = new Qux(this);
     }
 
     public Bar getBar() {
-
-        throw new UnsupportedOperationException("Not implemented yet");
+        return bar;
     }
 
     public List<Baz> getBazs() {
 
-        throw new UnsupportedOperationException("Not implemented yet");
-
+        return bazs;
     }
 
     public void addBaz(final Baz baz) {
-
-        throw new UnsupportedOperationException("Not implemented yet");
+        bazs.add(baz);
     }
 
     public Qux getQux() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return this.qux;
     }
 
     public List<Grault> getGraults() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return graults;
     }
 
     public void addGrault() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Grault grault = new Grault(this);
+        graults.add(grault);
     }
 
     public Corge getCorge() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return corge;
     }
 
     public void setCorge(final Corge firstCorge) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (this.corge == firstCorge) {
+            return;
+        }
+
+        if (this.corge != null) {
+            Corge oldCorge = this.corge;
+            this.corge = null;
+            oldCorge.setFoo(null);
+        }
+
+        this.corge = firstCorge;
+        if (firstCorge != null && firstCorge.getFoo() != this) {
+            firstCorge.setFoo(this);
+        }
     }
 }
